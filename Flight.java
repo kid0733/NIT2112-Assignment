@@ -11,7 +11,9 @@ public class Flight {
     private LocalTime departure_time;
     private LocalTime arrival_time;
     private float distance;
-
+    private String aircraftType;
+    private String pilotName;
+    private int maxPassengers;
 
     //Constructor
     public Flight(String airline_name,String flight_number,String flight_origin,String destination_city,float airfare,LocalTime departure_time,LocalTime arrival_time, float distance){
@@ -23,12 +25,27 @@ public class Flight {
         this.departure_time=departure_time;
         this.arrival_time=arrival_time;
         this.distance=distance;
+        this.aircraftType = aircraftType;
+        this.pilotName = pilotName;
+        this.maxPassengers = maxPassengers;
     }
 
 
     // Getter methods
     public String getDestinationCity() {
         return destination_city;
+    }
+
+    public String getAircraftType() {
+        return aircraftType;
+    }
+
+    public String getPilotName() {
+        return pilotName;
+    }
+
+    public int getMaxPassengers() {
+        return maxPassengers;
     }
 
     public float getAirfare() {
@@ -94,6 +111,18 @@ public class Flight {
         this.flight_origin = flight_origin;
     }
 
+    public void setAircraftType(String aircraftType) {
+        this.aircraftType = aircraftType;
+    }
+
+    public void setPilotName(String pilotName) {
+        this.pilotName = pilotName;
+    }
+
+    public void setMaxPassengers(int maxPassengers) {
+        this.maxPassengers = maxPassengers;
+    }
+
     //toString Method
     public String toString(){
         return "\nFlight Details:\n" +
@@ -104,9 +133,10 @@ public class Flight {
                 "Airfare: $" + airfare + "\n" +
                 "Departure Time: " + departure_time + "\n" +
                 "Arrival Time: " + arrival_time + "\n" +
-                "Distance: " + distance + " miles"+
+                "Distance: " + distance + " miles\n" +
+                "Aircraft Type: " + aircraftType + "\n" +
+                "Pilot Name: " + pilotName + "\n" +
+                "Max Passengers: " + maxPassengers +
                 "\n\n";
-
-
     }
 }

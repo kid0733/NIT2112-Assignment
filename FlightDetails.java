@@ -129,6 +129,40 @@ public class FlightDetails {
                 }
             } while (distance <= 0);
 
+            String aircraftType;
+            do {
+                System.out.println("Aircraft Type: ");
+                aircraftType = scanner.nextLine();
+                if (aircraftType.isEmpty()) {
+                    System.out.println("Aircraft Type cannot be empty. Please enter a valid Aircraft Type.");
+                }
+            } while (aircraftType.isEmpty());
+
+            String pilotName;
+            do {
+                System.out.println("Pilot Name: ");
+                pilotName = scanner.nextLine();
+                if (pilotName.isEmpty()) {
+                    System.out.println("Pilot Name cannot be empty. Please enter a valid Pilot Name.");
+                }
+            } while (pilotName.isEmpty());
+
+            int maxPassengers;
+            do {
+                System.out.println("Max Passengers: ");
+                String maxPassengersString = scanner.nextLine();
+                try {
+                    maxPassengers = Integer.parseInt(maxPassengersString);
+                    if (maxPassengers <= 0) {
+                        System.out.println("Max Passengers must be a positive number. Please enter a valid Max Passengers.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid Max Passengers format. Please enter a valid Max Passengers.");
+                    maxPassengers = -1; // Set maxPassengers to an invalid value to trigger the loop
+                }
+            } while (maxPassengers <= 0);
+
+
             // Creating a new Flight object and setting its attributes using setter methods
             Flight flight = new Flight("", "", "", "", 0.0f, null, null, 0.0f);
             flight.setAirlineName(airlineName);
@@ -139,6 +173,9 @@ public class FlightDetails {
             flight.setDepartureTime(departureTime);
             flight.setArrivalTime(arrivalTime);
             flight.setDistance(distance);
+            flight.setAircraftType(aircraftType);
+            flight.setPilotName(pilotName);
+            flight.setMaxPassengers(maxPassengers);
 
             // Adding the Flight object to the ArrayList
             flights.add(flight);

@@ -10,12 +10,11 @@ import java.util.ArrayList;
 
 public class Form1 extends JFrame implements ActionListener {
     private JTextArea textField1, textField2, textField3, textField4, textField5, textField6, textField7;
+    private JTextArea textField8, textField9, textField10;
     private JButton displayButton;
-    private JCheckBox checkBox1, checkBox2, checkBox3;
     private FlightDetails flightDetails;
 
     public static void main(String[] args) {
-
         String apiKey = "ae9951144cd40aaaebd15d7c38eb0084"; // Replace "YOUR_API_KEY" with your actual API key
         String city = "Sydney"; // Replace "YOUR_CITY_NAME" with your city name
 
@@ -45,7 +44,7 @@ public class Form1 extends JFrame implements ActionListener {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                new Form1(description, generalCondition, formattedTemperature,flightDetails);
+                new Form1(description, generalCondition, formattedTemperature, flightDetails);
             }
         });
     }
@@ -103,11 +102,11 @@ public class Form1 extends JFrame implements ActionListener {
         scrollPane2.setBounds(830, 220, 130, 75);
         add(scrollPane2);
 
-        JLabel label3 = new JLabel("Flight Origin and Destination:");
-        label3.setBounds(730, 305, 100, 25);
+        JLabel label3 = new JLabel("Origin->Destination:");
+        label3.setBounds(700, 305, 130, 50);
         add(label3);
         textField3 = new JTextArea();
-        textField3.setBounds(830, 305, 130, 75);
+        textField3.setBounds(730, 305, 130, 75);
         textField3.setEditable(false);
         JScrollPane scrollPane3 = new JScrollPane(textField3);
         scrollPane3.setBounds(830, 305, 130, 75);
@@ -153,31 +152,46 @@ public class Form1 extends JFrame implements ActionListener {
         scrollPane7.setBounds(830, 645, 130, 75);
         add(scrollPane7);
 
-//        //Check Boxes
-//
-//        checkBox1 = new JCheckBox("Checkbox 1");
-//        checkBox1.setBounds(70, 135, 100, 25);
-//        add(checkBox1);
-//
-//        checkBox2 = new JCheckBox("Checkbox 2");
-//        checkBox2.setBounds(70, 235, 100, 25);
-//        add(checkBox2);
-//
-//        checkBox3 = new JCheckBox("Checkbox 3");
-//        checkBox3.setBounds(70, 335, 100, 25);
-//        add(checkBox3);
+        JLabel label8 = new JLabel("Aircraft Type");
+        label8.setBounds(50, 305, 100, 25);
+        add(label8);
+        textField8 = new JTextArea();
+        textField8.setBounds(150, 305, 130, 75);
+        textField8.setEditable(false);
+        JScrollPane scrollPane8 = new JScrollPane(textField8);
+        scrollPane8.setBounds(150, 305, 130, 75);
+        add(scrollPane8);
+
+        JLabel label9 = new JLabel("Pilot Name");
+        label9.setBounds(50, 390, 100, 25);
+        add(label9);
+        textField9 = new JTextArea();
+        textField9.setBounds(150, 390, 130, 75);
+        textField9.setEditable(false);
+        JScrollPane scrollPane9 = new JScrollPane(textField9);
+        scrollPane9.setBounds(150, 390, 130, 75);
+        add(scrollPane9);
+
+        JLabel label10 = new JLabel("Max Passengers");
+        label10.setBounds(50, 475, 100, 25);
+        add(label10);
+        textField10 = new JTextArea();
+        textField10.setBounds(150, 475, 130, 75);
+        textField10.setEditable(false);
+        JScrollPane scrollPane10 = new JScrollPane(textField10);
+        scrollPane10.setBounds(150, 475, 130, 75);
+        add(scrollPane10);
 
         // Load the icons
         Icon sunnyIcon = new ImageIcon("sunny.png");
         Icon cloudyIcon = new ImageIcon("cloudy.png");
         Icon rainyIcon = new ImageIcon("rainy.png");
-        int iconWidth = 50;
-        int iconHeight = 50;
+
         //Weather Sections
         JLabel descriptionLabel = new JLabel("Description: " + description);
         descriptionLabel.setBounds(200, 125, 300, 25);
         descriptionLabel.setFont(new Font("Levi Windows", Font.BOLD, 20));
-        descriptionLabel.setForeground(new Color(245,245,245));
+        descriptionLabel.setForeground(new Color(245, 245, 245));
         add(descriptionLabel);
 
         JLabel generalConditionLabel = new JLabel();
@@ -208,8 +222,9 @@ public class Form1 extends JFrame implements ActionListener {
         JLabel temperatureLabel = new JLabel("Temperature: " + formattedTemperature + "°C");
         temperatureLabel.setBounds(200, 175, 300, 25);
         temperatureLabel.setFont(new Font("Levi Windows", Font.BOLD, 20));
-        temperatureLabel.setForeground(new Color(245,245,245));
+        temperatureLabel.setForeground(new Color(245, 245, 245));
         add(temperatureLabel);
+
         // Display Flights Button:
         displayButton = new JButton("Display Flights");
         displayButton.setBounds(270, 715, 150, 30);
@@ -232,6 +247,9 @@ public class Form1 extends JFrame implements ActionListener {
                 StringBuilder sb5 = new StringBuilder();
                 StringBuilder sb6 = new StringBuilder();
                 StringBuilder sb7 = new StringBuilder();
+                StringBuilder sb8 = new StringBuilder();
+                StringBuilder sb9 = new StringBuilder();
+                StringBuilder sb10 = new StringBuilder();
 
                 for (Flight flight : flights) {
                     sb1.append(flight.getAirlineName()).append("\n");
@@ -241,6 +259,9 @@ public class Form1 extends JFrame implements ActionListener {
                     sb5.append(flight.getDepartureTime()).append("\n");
                     sb6.append(flight.getArrivalTime()).append("\n");
                     sb7.append(flight.getDistance()).append("\n");
+                    sb8.append(flight.getAircraftType()).append("\n");
+                    sb9.append(flight.getPilotName()).append("\n");
+                    sb10.append(flight.getMaxPassengers()).append("\n");
                 }
 
                 textField1.setText(sb1.toString());
@@ -250,6 +271,9 @@ public class Form1 extends JFrame implements ActionListener {
                 textField5.setText(sb5.toString());
                 textField6.setText(sb6.toString());
                 textField7.setText(sb7.toString());
+                textField8.setText(sb8.toString());
+                textField9.setText(sb9.toString());
+                textField10.setText(sb10.toString());
             } else {
                 JOptionPane.showMessageDialog(this, "No flights available.");
             }
